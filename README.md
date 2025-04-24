@@ -194,7 +194,7 @@ Every time we create new environment the CIDR block below needs to be updated. T
 |----------------------------------|-------|-------|-------|-------|------------|------------|---------|--------|------|-------------|-------------|-------------|----------|-----------|-----------|--------------|----------------|
 | **file-transfer**                | Yes   | Yes   | Yes   | Yes   |            | Yes        | Yes     | Yes    | Yes  | Yes         |             |             | Yes      | Yes       |           |              |                |
 | **openapi-automation**           | Yes   | Yes   | Yes   | Yes   | Yes        | Yes        | Yes     | Yes    | Yes  | Yes         | Yes         | Yes         | Yes      | Yes       | Yes       | Yes          | Yes            |
-| **user-documents**               | Yes   | Yes   | Yes   | Yes   | Yes        | Yes        | Yes     | Yes    | Yes  | Yes         | Yes         | Yes         | Yes      |           | Yes       |              | Yes            |
+| **user-documents**               | Yes   | Yes   | Yes   | Yes   | Yes        | Yes        | Yes     | Yes    | Yes  | Yes         | Yes         | Yes         | Yes      |           | Yes       | Yes          | Yes            |
 | **wire-incoming**                | Yes   | Yes   | Yes   | Yes   | Yes        |            | Yes     | Yes    | Yes  |             | Yes         | Yes         | Yes      |           | Yes       |              | Yes            |
 | **wire-outgoing**                | Yes   | Yes   | Yes   | Yes   | Yes        |            | Yes     | Yes    | Yes  |             | Yes         | Yes         | Yes      |           | Yes       |              | Yes            |
 | **wire-staging**                 | Yes   | Yes   | Yes   | Yes   | Yes        |            | Yes     | Yes    | Yes  |             | Yes         | Yes         | Yes      |           | Yes       |              | Yes            |
@@ -236,16 +236,48 @@ Note: this is not complete, still being updated
 
 | Name                                               | Dev01 | Dev02 | QA1  | QA02 | Thread-UAT | Sutton-UAT | Sandbox | Hotfix | Perf | Sutton-Prod | Thread-Prod | Legend-Prod | CBT-Prod | CUBI-Prod | FBOL-Prod | Emprise-Prod | Rockpoint-Prod |
 |----------------------------------------------------|-------|-------|------|------|------------|------------|---------|--------|------|-------------|-------------|-------------|----------|-----------|-----------|--------------|----------------|
-| **&lt;env&gt;-&lt;bank&gt;-etl-accounts**          | Yes   | Yes   |      |      |            |            |         |        |      |             |             |             |          |           |           |              |                |
-| **&lt;env&gt;-&lt;bank&gt;-etl-customers**         | Yes   | Yes   |      |      |            |            |         |        |      |             |             |             |          |           |           |              |                |
-| **&lt;env&gt;-&lt;bank&gt;-etl-transactions**      | Yes   | Yes   |      |      |            |            |         |        |      |             |             |             |          |           |           |              |                |
-| **&lt;env&gt;-&lt;bank&gt;-etl-loans**             | Yes   | Yes   |      |      |            |            |         |        |      |             |             |             |          |           |           |              |                |
-| **&lt;env&gt;-&lt;bank&gt;-etl-settlement**        | Yes   | Yes   |      |      |            |            |         |        |      |             |             |             |          |           |           |              |                |
-| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-fifo**     | Yes   | Yes   |      |      |            |            |         |        |      |             |             |             |          |           |           |              |                |
-| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-lendesca** | Yes   | Yes   |      |      |            |            |         |        |      |             |             |             |          |           |           |              |                |
-| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-setcpros** | Yes   | Yes   |      |      |            |            |         |        |      |             |             |             |          |           |           |              |                |
-| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-ubs**      | Yes   | Yes   |      |      |            |            |         |        |      |             |             |             |          |           |           |              |                |
+| **&lt;env&gt;-&lt;bank&gt;-etl-accounts**          | Yes   | Yes   | Yes  | Yes  | Yes        | Yes        | Yes     | Yes    | Yes  | Yes         | Yes         | Yes         | Yes      | Yes       | Yes       | Yes          | Yes            |
+| **&lt;env&gt;-&lt;bank&gt;-etl-customers**         | Yes   | Yes   | Yes  | Yes  | Yes        | Yes        | Yes     | Yes    | Yes  | Yes         | Yes         | Yes         | Yes      | Yes       | Yes       | Yes          | Yes            |
+| **&lt;env&gt;-&lt;bank&gt;-etl-transactions**      | Yes   | Yes   | Yes  | Yes  | Yes        | Yes        | Yes     | Yes    | Yes  | Yes         | Yes         | Yes         | Yes      | Yes       | Yes       | Yes          | Yes            |
+| **&lt;env&gt;-&lt;bank&gt;-etl-loans**             | Yes   | Yes   | Yes  | Yes  |            |            | Yes     | Yes    | Yes  |             |             |             | Yes      |           |           |              |                |
+| **&lt;env&gt;-&lt;bank&gt;-etl-jha-settlement**    | Yes   | Yes   | Yes  | Yes  |            |            | Yes     | Yes    | Yes  |             |             |             | Yes      |           |           |              | Yes            |
+| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-fifo**     | Yes   | Yes   | Yes  | Yes  |            |            | Yes     | Yes    | Yes  |             |             |             | Yes      |           |           |              |                |
+| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-lendesca** | Yes   | Yes   | Yes  | Yes  |            |            | Yes     | Yes    | Yes  |             |             |             | Yes      |           |           |              |                |
+| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-setcpros** | Yes   | Yes   | Yes  | Yes  |            |            | Yes     | Yes    | Yes  |             |             |             | Yes      |           |           |              |                |
+| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-ubs**      | Yes   | Yes   | Yes  | Yes  |            |            | Yes     | Yes    | Yes  |             |             |             | Yes      |           |           |              |                |
 
+
+## Glue Jobs - Multi-tenant View
+
+| Name                                               | Banks                                                       |
+|----------------------------------------------------|-------------------------------------------------------------|
+| **&lt;env&gt;-&lt;bank&gt;-etl-accounts**          | cbt, cubi, legend, sutton, thread, fbol, emprise, rockpoint |
+| **&lt;env&gt;-&lt;bank&gt;-etl-customers**         | cbt, cubi, legend, sutton, thread, fbol, emprise, rockpoint |
+| **&lt;env&gt;-&lt;bank&gt;-etl-transactions**      | cbt, cubi, legend, sutton, thread, fbol, emprise, rockpoint |
+| **&lt;env&gt;-&lt;bank&gt;-etl-loans**             | cbt                                                         |
+| **&lt;env&gt;-&lt;bank&gt;-etl-jha-settlement**    | cbt, rockpoint                                              |
+| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-fifo**     | cbt                                                         |
+| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-lendesca** | cbt                                                         |
+| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-setcpros** | cbt                                                         |
+| **&lt;env&gt;-&lt;bank&gt;-etl-checkalt-ubs**      | cbt                                                         |
+
+
+## CloudFront
+
+## API Gateway Custom Domains
+
+| Name                                | Dev01 | Dev02 | QA1  | QA02 | Thread-UAT | Sutton-UAT | Sandbox    | Hotfix     | Perf       | Sutton-Prod | Thread-Prod | Legend-Prod | CBT-Prod    | CUBI-Prod  | FBOL-Prod  | Emprise-Prod | Rockpoint-Prod |
+|-------------------------------------|-------|-------|------|------|------------|------------|------------|------------|------------|-------------|-------------|-------------|-------------|------------|------------|--------------|----------------|
+| api                                 | Yes   | Yes   | Yes  | Yes  | Yes        | Yes        | Yes        | Yes        | Yes        | Yes         | Yes         | Yes         | Yes         | Yes        | Yes        | Yes          | Yes            |
+| cards-api                           | Yes   | Yes   | Yes  | Yes  | Yes        |            |            | Yes        |            |             |             |             |             |            |            |              |                |
+| manager-translations-api            | Yes   | Yes   | Yes  | Yes  | Yes        | Yes        | Yes        | Yes        | Yes        | Yes         | Yes         | Yes         | Yes         | Yes        | Yes        | Yes          | Yes            |
+| manager-users-api                   | Yes   | Yes   | Yes  | Yes  | Yes        | Yes        | Yes        | Yes        | Yes        | Yes         | Yes         | Yes         | Yes         | Yes        | Yes        | Yes          | Yes            |
+| mobile-web                          |       | Yes   |      | Yes  |            |            | Yes        |            |            |             |             |             |             |            |            |              |                |
+| openapi                             | Yes   | Yes   | Yes  | Yes  | Yes        | Yes        | Yes        | Yes        | Yes        | Yes         | Yes         | Yes         | Yes         | Yes        | Yes        | Yes          | Yes            |
+| search-tenant-api                   | Yes   | Yes   | Yes  | Yes  |            |            |            |            |            |             |             |             |             |            |            |              |                |
+| service-core-bank [non-prod only]   | Yes   | Yes   | Yes  | Yes  | Yes        |            |            |            |            |             |             |             |             |            |            |              |                |
+| studio-api                          | Yes   |       |      | Yes  |            |            |            |            |            |             |             |             |             |            |            |              |                |
+| transaction-events-api              | Yes   | Yes   | Yes  | Yes  | Yes        | Yes        | Yes        | Yes        | Yes        | Yes         | Yes         | Yes         | Yes         | Yes        | Yes        | Yes          | Yes            |
 
 ## API Gateway IDs
 
